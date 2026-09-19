@@ -1038,3 +1038,28 @@ textarea.input-field.floating-ball-css-input {
 .account-name {
   font-size: 16px !important;
 }
+/* ================= 点按反馈：灰色变成黑色 ================= */
+
+/* 1. 把点击瞬间的灰色背景换成黑色 */
+.list-row.clickable:active,
+.account-row:active,
+.temperature-preset-header:active {
+  background-color: #000000 !important;
+}
+
+/* 2. 点击时文字同步变白（黑底白字才看得清） */
+.list-row.clickable:active .row-label,
+.list-row.clickable:active .row-value,
+.list-row.clickable:active .row-sub,
+.list-row.clickable:active .row-chevron,
+.account-row:active .account-name,
+.account-row:active .account-sub,
+.temperature-preset-header:active {
+  color: #FFFFFF !important;
+}
+
+/* 3. 点击时左侧图标框也配合做点微调 */
+.list-row.clickable:active .row-icon-box {
+  background-color: #333333 !important; /* 深灰色，和纯黑背景区分开 */
+  color: #FFFFFF !important;
+}
