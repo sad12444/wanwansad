@@ -984,3 +984,61 @@ textarea.input-field.floating-ball-css-input {
 
 /* ===== 清空确认输入框 ===== */
 .clear-confirm-wrap { padding: 0 20px 12px; }
+/* ================= 按照要求微调 ================= */
+
+/* 1. 背景和卡片改成黑色系 */
+.settings-scroll {
+  background-color: #000000 !important; /* 深黑背景 */
+}
+.setting-section {
+  background: #1C1C1E !important;       /* 卡片深灰 */
+  border-color: #2C2C2E !important;     /* 边框颜色 */
+}
+.setting-section .list-row {
+  border-bottom-color: #2C2C2E !important;
+}
+/* 文字同步改成浅色，不然在黑底上看不见 */
+.row-body .row-label, .account-name, .settings-large-title span {
+  color: #FFFFFF !important;
+}
+.row-value, .account-sub {
+  color: #8E8E93 !important;
+}
+.settings-large-title span {
+  color: #8E8E93 !important; /* 标题改成浅灰 */
+}
+
+/* 2. 按钮从全圆润改成“方圆”（圆角矩形） */
+.btn-pill, .btn-ghost, .btn-sm, .btn-full {
+  border-radius: 8px !important; /* 8px 就是好看的方圆 */
+}
+
+/* 3. 头像恢复成圆形，不要方圆 */
+.account-avatar, .profile-avatar-large {
+  border-radius: 50% !important; /* 强制变回圆形 */
+}
+
+/* 4. 整体缩小一点 */
+.settings-large-title span {
+  font-size: 24px !important; /* 大标题缩小 */
+}
+.setting-section .list-row {
+  padding: 8px 12px !important; /* 行距缩小 */
+  min-height: 40px !important;
+}
+.row-icon-box {
+  width: 26px !important;      /* 图标框缩小 */
+  height: 26px !important;
+  font-size: 14px !important;
+}
+.row-body .row-label {
+  font-size: 14px !important;  /* 文字缩小 */
+}
+.account-avatar {
+  width: 44px !important;      /* 头像稍微小一点 */
+  height: 44px !important;
+  font-size: 18px !important;
+}
+.account-name {
+  font-size: 16px !important;
+  }
