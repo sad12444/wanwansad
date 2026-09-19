@@ -984,3 +984,99 @@ textarea.input-field.floating-ball-css-input {
 
 /* ===== 清空确认输入框 ===== */
 .clear-confirm-wrap { padding: 0 20px 12px; }
+/* ================= 改造设置页 UI ================= */
+
+/* 1. 彻底隐藏顶部状态栏（干掉时间、灵动岛） */
+.status-bar {
+  display: none !important;
+}
+
+/* 2. 整体背景换成浅灰色（iOS 风格） */
+.settings-scroll {
+  background-color: #F2F2F7 !important;
+  padding-top: 20px;
+}
+
+/* 3. 把“设置”两个字，变成英文居中标题 */
+.settings-large-title {
+  text-align: center;
+  margin: 20px 0;
+}
+.settings-large-title span {
+  display: block;
+  font-size: 13px !important;
+  letter-spacing: 6px;
+  color: #8E8E93;
+  font-weight: 500;
+}
+/* 隐藏原来的“设置”文字，替换成 “SETTINGS” */
+.settings-large-title span {
+  font-size: 0 !important; 
+}
+.settings-large-title span::before {
+  content: "SETTINGS";
+  font-size: 14px;
+}
+
+/* 4. 把每个功能块，变成白色卡片 */
+.setting-section {
+  background: #FFFFFF !important;
+  border-radius: 12px !important;
+  margin: 0 16px 16px !important;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* 列表行样式 */
+.list-row {
+  border-bottom: none !important;
+  position: relative;
+  padding: 14px 16px !important;
+  background: #FFFFFF !important;
+  display: flex;
+  align-items: center;
+}
+
+/* 两行之间加一条极细的灰色分割线 */
+.list-row + .list-row::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 60px; right: 0;
+  height: 1px;
+  background: #E5E5EA;
+}
+
+/* 5. 左侧图标改成灰色小方块 */
+.row-icon-box {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 8px !important;
+  background: #F2F2F7 !important;
+  color: #8E8E93 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px !important;
+  font-size: 14px !important;
+  flex-shrink: 0;
+}
+
+/* 字体加粗加深 */
+.row-label {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #000000 !important;
+}
+
+/* 6. 开关改成 iOS 绿色风格 */
+.toggle-track {
+  background: #E5E5EA !important;
+  border-radius: 31px !important;
+}
+.toggle-wrap input:checked + .toggle-track {
+  background: #34C759 !important;
+}
+.toggle-thumb {
+  background: #FFFFFF !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
