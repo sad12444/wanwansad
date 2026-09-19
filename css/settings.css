@@ -1038,28 +1038,23 @@ textarea.input-field.floating-ball-css-input {
 .account-name {
   font-size: 16px !important;
 }
-/* ================= 点按反馈：灰色变成黑色 ================= */
+/* ================= 实心按钮：改成黑色 + 方圆角 ================= */
 
-/* 1. 把点击瞬间的灰色背景换成黑色 */
-.list-row.clickable:active,
-.account-row:active,
-.temperature-preset-header:active {
+/* 1. 把实心按钮的灰色背景改成黑色，文字改成白色 */
+.btn-pill, .btn-full {
   background-color: #000000 !important;
-}
-
-/* 2. 点击时文字同步变白（黑底白字才看得清） */
-.list-row.clickable:active .row-label,
-.list-row.clickable:active .row-value,
-.list-row.clickable:active .row-sub,
-.list-row.clickable:active .row-chevron,
-.account-row:active .account-name,
-.account-row:active .account-sub,
-.temperature-preset-header:active {
   color: #FFFFFF !important;
+  border-color: #000000 !important; /* 如果按钮有边框，也同步变黑 */
+  border-radius: 8px !important;    /* 方圆角（8px 圆角） */
 }
 
-/* 3. 点击时左侧图标框也配合做点微调 */
-.list-row.clickable:active .row-icon-box {
-  background-color: #333333 !important; /* 深灰色，和纯黑背景区分开 */
+/* 2. 给按钮加上点击反馈（点下去变深灰，显得有质感） */
+.btn-pill:active, .btn-full:active {
+  background-color: #333333 !important;
+  border-color: #333333 !important;
+}
+
+/* 3. 如果按钮里面有图标，让图标也变成白色 */
+.btn-pill i, .btn-full i {
   color: #FFFFFF !important;
 }
