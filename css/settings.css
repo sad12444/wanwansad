@@ -1,4 +1,4 @@
-/* settings.css — 仿 Apple iOS Settings 风格 */
+/* settings.css — 仿 Apple iOS Settings 风格（全黑按钮精修版） */
 
 /* ===== 全屏页面通用 ===== */
 .full-page {
@@ -39,6 +39,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  background-color: #F2F2F7 !important; /* 浅灰背景，衬托卡片 */
 }
 .sub-page .settings-scroll {
   padding-top: 12px;
@@ -54,8 +55,10 @@
   flex-shrink: 0;
 }
 .settings-large-title span {
-  font-size: 34px; font-weight: 700;
-  color: var(--c-text); letter-spacing: -0.02em;
+  font-size: 24px !important; /* 标题缩小 */
+  font-weight: 700;
+  color: var(--c-text);
+  letter-spacing: -0.02em;
 }
 .settings-large-title:active span { opacity: 0.5; }
 
@@ -67,8 +70,9 @@
 }
 .account-row:active { background: var(--c-surface); }
 .account-avatar {
-  width: 56px; height: 56px;
-  border-radius: 50%;
+  width: 44px !important; /* 头像稍微变小 */
+  height: 44px !important;
+  border-radius: 50% !important; /* 头像保持圆形 */
   background: linear-gradient(
     135deg,
     color-mix(in srgb, var(--c-accent) 70%, #fff),
@@ -76,24 +80,27 @@
   );
   background-size: cover; background-position: center;
   display: flex; align-items: center; justify-content: center;
-  font-size: 22px; font-weight: 500; color: #fff;
+  font-size: 18px !important; font-weight: 500; color: #fff;
   flex-shrink: 0; overflow: hidden;
 }
 
 .account-info { flex: 1; min-width: 0; }
 .account-name {
-  font-size: 18px; font-weight: 500;
-  color: var(--c-text); line-height: 1.3;
+  font-size: 16px !important;
+  font-weight: 500;
+  color: #000000 !important; /* 主文字改成纯黑 */
+  line-height: 1.3;
 }
 .account-sub {
   font-size: 12px; color: var(--c-sub); margin-top: 2px;
 }
+
 /* ===== 设置区块卡片 ===== */
 .setting-section {
-  background: var(--c-bg);
+  background: #FFFFFF !important;       /* 卡片纯白 */
   border-radius: var(--r-md);
   overflow: hidden;
-  border: 1px solid var(--c-border);
+  border: 1px solid #E5E5EA !important; /* 浅灰边框 */
   box-shadow: 0 1px 3px rgba(0,0,0,0.025);
 }
 .section-title {
@@ -111,22 +118,25 @@
 /* ===== 列表行（Apple Settings风格） ===== */
 .setting-section .list-row {
   display: flex; align-items: center;
-  padding: 11px 16px; gap: 12px;
+  padding: 8px 12px !important; /* 行高缩小 */
+  gap: 12px;
   border-bottom: 1px solid var(--c-border);
-  min-height: 44px;
+  min-height: 40px !important;
 }
 .setting-section .list-row:last-child { border-bottom: none; }
 .list-row.clickable { cursor: pointer; }
 .list-row.clickable:active { background: var(--c-surface); }
 .row-icon-box {
-  width: 30px; height: 30px;
+  width: 26px !important; /* 图标框变小 */
+  height: 26px !important;
   border-radius: 7px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 16px; color: #fff; flex-shrink: 0;
-  background: var(--c-accent-dark);
+  font-size: 13px !important; color: #FFFFFF !important; /* 图标变成白色 */
+  flex-shrink: 0;
+  background: #1C1C1E !important; /* 图标框改成黑色 */
 }
 .row-body { flex: 1 0 auto; }
-.row-body .row-label { font-size: 16px; color: var(--c-text); line-height: 1.3; white-space: nowrap; }
+.row-body .row-label { font-size: 14px !important; color: #000000 !important; line-height: 1.3; white-space: nowrap; }
 .row-body .row-sub { font-size: 12px; color: var(--c-sub); margin-top: 1px; }
 .row-value {
   font-size: 15px; color: var(--c-sub);
@@ -146,7 +156,7 @@
 }
 .profile-avatar-large {
   width: 96px; height: 96px;
-  border-radius: 50%;
+  border-radius: 50% !important; /* 头像保持圆形 */
   background: linear-gradient(135deg, var(--c-accent), var(--c-accent-dark));
   display: flex; align-items: center; justify-content: center;
   font-size: 38px; font-weight: 500; color: #fff;
@@ -171,13 +181,14 @@
 
 /* ===== 表单标签 ===== */
 .form-label {
-  font-size: 13px; color: var(--c-sub); padding: 4px 0 2px;
+  font-size: 13px; color: var(--c-sub); padding: 4px  0 2px;
 }
 
-/* ===== API表单 ===== */
+/* ===== API1表单 ===== */
 .api-form {
-  padding: 8px 16px 16px;
-  display: flex; flex-direction: column; gap: 10px;
+  padding:;
+  8px 16px  padding16px;
+  display: flex; flex:-direction: column; gap: 10px;
 }
 .input-with-toggle {
   position: relative; display: flex; align-items: center;
@@ -255,8 +266,7 @@
   gap: 3px;
 }
 .api-tab {
-  flex: 1;
-  padding: 8px 0;
+  flex: 8px 0;
   font-size: 14px;
   font-weight: 500;
   color: var(--c-sub);
@@ -984,6 +994,7 @@ textarea.input-field.floating-ball-css-input {
 
 /* ===== 清空确认输入框 ===== */
 .clear-confirm-wrap { padding: 0 20px 12px; }
+
 /* ================= 最终版：白底 + 黑色元素 + 方圆按钮 + 小尺寸 ================= */
 
 /* 1. 背景：保持干净的浅灰/白色，不要把底部弄黑 */
@@ -1005,56 +1016,4 @@ textarea.input-field.floating-ball-css-input {
 }
 
 /* 3. 按钮：圆框改成“方圆”（8px 圆角） */
-.btn-pill, .btn-ghost, .btn-sm, .btn-full {
-  border-radius: 8px !important;
-}
-
-/* 4. 头像：保持圆形，不要方圆 */
-.account-avatar, .profile-avatar-large {
-  border-radius: 50% !important;
-}
-
-/* 5. 整体改小一点，更精致 */
-.settings-large-title span {
-  font-size: 24px !important;           /* 标题缩小 */
-}
-.setting-section .list-row {
-  padding: 8px 12px !important;         /* 行高缩小 */
-  min-height: 40px !important;
-}
-.row-icon-box {
-  width: 26px !important;               /* 图标框变小 */
-  height: 26px !important;
-  font-size: 13px !important;
-}
-.row-body .row-label {
-  font-size: 14px !important;           /* 文字变小 */
-}
-.account-avatar {
-  width: 44px !important;               /* 头像稍微变小 */
-  height: 44px !important;
-  font-size: 18px !important;
-}
-.account-name {
-  font-size: 16px !important;
-}
-/* ================= 实心按钮：改成黑色 + 方圆角 ================= */
-
-/* 1. 把实心按钮的灰色背景改成黑色，文字改成白色 */
-.btn-pill, .btn-full {
-  background-color: #000000 !important;
-  color: #FFFFFF !important;
-  border-color: #000000 !important; /* 如果按钮有边框，也同步变黑 */
-  border-radius: 8px !important;    /* 方圆角（8px 圆角） */
-}
-
-/* 2. 给按钮加上点击反馈（点下去变深灰，显得有质感） */
-.btn-pill:active, .btn-full:active {
-  background-color: #333333 !important;
-  border-color: #333333 !important;
-}
-
-/* 3. 如果按钮里面有图标，让图标也变成白色 */
-.btn-pill i, .btn-full i {
-  color: #FFFFFF !important;
-}
+.btn-pill, .btn-ghost, .btn-sm, .btn-full
