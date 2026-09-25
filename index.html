@@ -1,150 +1,419 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#ffffff">
-  <link rel="apple-touch-icon" id="app-apple-touch-icon" href="img/wanwan.png">
-  <link rel="icon" id="app-favicon" type="image/png" href="img/wanwan.png">
-  <link rel="manifest" id="app-manifest" href="manifest.json">
-  <title>弯弯</title>
+/* ============================================================
+   base.css — 完整基础样式（含开关/按钮纯黑强制覆盖）
+   ============================================================ */
 
-  <!-- Font Awesome 7.2.0 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
+/* 1. 基础重置与变量 */
+:root {
+  --c-bg: #FFFFFF;
+  --c-surface: #F2F2F7;
+  --c-surface-2: #E5E5EA;
+  --c-border: #E5E5EA;
+  --c-border-m: #D1D1D6;
+  --c-text: #000000;
+  --c-sub: #8E8E93;
+  --c-hint: #C7C7CC;
+  --c-accent: #007AFF;
+  --c-accent-dark: #0056b3;
+  --c-accent-light: #E5F1FF;
+  --c-red: #FF3B30;
+  --c-green: #34C759;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --dur: 0.2s;
+  --ease: ease-in-out;
+}
 
-  <!-- Flaticon UIcons -->
-  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.4.2/uicons-brands/css/uicons-brands.css">
-  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.4.2/uicons-thin-rounded/css/uicons-thin-rounded.css">
-  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.4.2/uicons-thin-straight/css/uicons-thin-straight.css">
-  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css">
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
 
-  <!-- Dexie 多CDN备用加载 -->
-  <script>
-  (function() {
-    var cdns = [
-      'https://cdn.jsdelivr.net/npm/dexie@4.4.3/dist/dexie.min.js',
-      'https://unpkg.com/dexie@4.4.3/dist/dexie.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/dexie/4.4.3/dexie.min.js'
-    ]
-    var loaded = false
-    function tryLoad(i) {
-      if (i >= cdns.length || loaded) return
-      var s = document.createElement('script')
-      s.src = cdns[i]
-      s.onload = function() { loaded = true }
-      s.onerror = function() { tryLoad(i + 1) }
-      document.head.appendChild(s)
-    }
-    tryLoad(0)
-  })()
-  </script>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font);
+  background: var(--c-bg);
+  color: var(--c-text);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
 
-  <!-- JSZip -->
-  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+input, textarea, select, button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
 
-  <!-- CSS 引用顺序 -->
-  <link rel="stylesheet" href="css/base.css?v=1.0.14">
-  <link rel="stylesheet" href="css/home.css?v=1.0.12">
-  <link rel="stylesheet" href="css/settings.css?v=1.0.9">
-  <link rel="stylesheet" href="css/tutorial.css?v=1.0.5">
-  <link rel="stylesheet" href="css/tutorial-chatgenerator.css?v=1.0.0">
-  <link rel="stylesheet" href="css/character.css?v=1.0.3">
-  <link rel="stylesheet" href="css/lorebook.css?v=1.0.3">
-  <link rel="stylesheet" href="css/wechat.css?v=1.0.8">
-  <link rel="stylesheet" href="css/memory.css?v=1.0.5">
-  <link rel="stylesheet" href="css/miss-you.css?v=1.0.4">
-  <link rel="stylesheet" href="css/phone.css?v=1.0.10">
-  <link rel="stylesheet" href="css/music-page.css?v=1.0.3">
-  <link rel="stylesheet" href="css/wallet.css?v=1.0.3">
-  <link rel="stylesheet" href="css/work.css?v=1.0.3">
-  <link rel="stylesheet" href="css/x-page.css?v=1.0.3">
-  <link rel="stylesheet" href="css/ig-page.css?v=1.0.3">
-  <link rel="stylesheet" href="css/ins-page.css?v=1.0.3">
-  <link rel="stylesheet" href="css/icity.css?v=1.0.3">
-  <link rel="stylesheet" href="css/imessage.css?v=1.0.3">
-  <link rel="stylesheet" href="css/bank.css?v=1.0.3">
-  <link rel="stylesheet" href="css/taobao.css?v=1.0.3">
-  <link rel="stylesheet" href="css/bookstore.css?v=1.0.3">
-  <link rel="stylesheet" href="css/yumyum.css?v=1.0.3">
-  <link rel="stylesheet" href="css/wechat-login-modal.css?v=1.0.3">
-  <link rel="stylesheet" href="css/anywhere-door.css?v=1.0.3">
-  <link rel="stylesheet" href="css/game-hall.css?v=1.0.3">
-  <link rel="stylesheet" href="css/werewolf-game.css?v=1.0.3">
-  <link rel="stylesheet" href="css/avg.css?v=1.0.1">
-  <link rel="stylesheet" href="css/terminal.css?v=1.1.1">
-</head>
-<body>
-  <!-- 开屏页 -->
-  <div id="loading">
-    <div class="splash-bg">
-      <div class="splash-blob b1"></div>
-      <div class="splash-blob b2"></div>
-      <div class="splash-blob b3"></div>
-      <div class="splash-ring r1"></div>
-      <div class="splash-ring r2"></div>
-      <div class="splash-ring r3"></div>
-    </div>
-    <div class="splash-center">
-      <div class="splash-icon"><img src="img/wanwan.png" alt="弯弯"></div>
-      <div class="splash-title">弯弯</div>
-      <div class="splash-tagline">ワンワン</div>
-    </div>
-    <div class="splash-tap" id="splash-tap">
-      <div class="tap-line"></div>
-      <span>Tap to Start</span>
-      <div class="tap-line"></div>
-    </div>
-  </div>
+a { text-decoration: none; color: var(--c-accent); }
+img { max-width: 100%; display: block; }
 
-  <!-- 主容器 -->
-  <div id="app"></div>
+/* ============================================================
+   ★★★ 核心：强制开关（Toggle / Switch）变成纯黑风格 ★★★
+   ============================================================ */
 
-  <!-- 强力保活音频元素 -->
-  <audio id="keepalive-audio" loop preload="auto" style="display:none;">
-    <source src="audio/blank.mp3" type="audio/mpeg">
-  </audio>
+/* 1. 针对原生 input[type="checkbox"] */
+input[type="checkbox"] {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 50px !important;
+  height: 30px !important;
+  background: #E5E5EA !important; /* 未开启灰色 */
+  border-radius: 15px !important;
+  position: relative !important;
+  outline: none !important;
+  transition: background 0.2s !important;
+  cursor: pointer !important;
+  vertical-align: middle !important;
+  border: none !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+}
 
-  <!-- JS 加载顺序 -->
-  <script src="js/db.js?v=1.0.6"></script>
-  <script src="js/main.js?v=1.0.16"></script>
-  <script src="js/home.js?v=1.0.4"></script>
-  <script src="js/settings.js?v=1.0.17"></script>
-  <script src="js/about.js?v=1.0.10"></script>
-  <script src="js/data.js?v=1.0.14"></script>
-  <script src="js/export-stream.js?v=1.0.0"></script>
-  <script src="js/data-stream.js?v=1.0.4"></script>
-  <script src="js/sync.js?v=1.0.8"></script>
-  <script src="js/tutorial.js?v=1.0.7"></script>
-  <script src="js/character.js?v=1.0.3"></script>
-  <script src="js/lorebook.js?v=1.0.5"></script>
-  <script src="js/memory.js?v=1.0.5"></script>
-  <script src="js/wechat.js?v=1.0.18"></script>
-  <script src="js/tutorial-chatgenerator.js?v=1.0.0"></script>
-  <script src="js/online.js?v=1.0.3"></script>
-  <script src="js/miss-you.js?v=1.0.6"></script>
-  <script src="js/icity.js?v=1.0.4"></script>
-  <script src="js/phone.js?v=1.0.5"></script>
-  <script src="js/phone-wechat.js?v=1.0.2"></script>
-  <script src="js/phone-apps.js?v=1.0.0"></script>
-  <script src="js/music-page.js?v=1.0.3"></script>
-  <script src="js/wallet.js?v=1.0.3"></script>
-  <script src="js/x-page.js?v=1.0.3"></script>
-  <script src="js/ig-page.js?v=1.0.3"></script>
-  <script src="js/ins-page.js?v=1.0.3"></script>
-  <script src="js/work.js?v=1.0.3"></script>
-  <script src="js/bank.js?v=1.0.3"></script>
-  <script src="js/imessage.js?v=1.0.3"></script>
-  <script src="js/wechat-login-modal.js?v=1.0.3"></script>
-  <script src="js/taobao.js?v=1.0.3"></script>
-  <script src="js/bookstore.js?v=1.0.3"></script>
-  <script src="js/yumyum.js?v=1.0.3"></script>
-  <script src="js/anywhere-door.js?v=1.0.4"></script>
-  <script src="js/game-hall.js?v=1.0.4"></script>
-  <script src="js/werewolf-game.js?v=1.0.3"></script>
-  <script src="js/avg.js?v=1.1.0"></script>
-  <script src="js/terminal.js?v=1.1.5"></script>
-</body>
-</html>
+input[type="checkbox"]:checked {
+  background: #000000 !important; /* 开启纯黑 */
+}
+
+input[type="checkbox"]::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 2px !important;
+  left: 2px !important;
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 50% !important;
+  background: #FFFFFF !important;
+  transition: transform 0.2s !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+  margin: 0 !important;
+}
+
+input[type="checkbox"]:checked::after {
+  transform: translateX(20px) !important;
+}
+
+/* 2. 针对自定义类名开关（如 .switch, .toggle 等） */
+.switch, .toggle, [class*="switch"], [class*="toggle"] {
+  background-color: #E5E5EA !important;
+  border-color: #E5E5EA !important;
+  border-radius: 999px !important;
+  transition: background-color 0.2s !important;
+}
+
+.switch.active, .toggle.active,
+.switch[aria-checked="true"], .toggle[aria-checked="true"],
+[class*="switch"].on, [class*="toggle"].on,
+[class*="switch"].checked, [class*="toggle"].checked {
+  background-color: #000000 !important; /* 激活纯黑 */
+  border-color: #000000 !important;
+}
+
+.switch::after, .toggle::after,
+[class*="switch"]::after, [class*="toggle"]::after {
+  background-color: #FFFFFF !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+}
+
+/* ============================================================
+   通用按钮样式（黑色底 + 白色字 + 方圆角）
+   ============================================================ */
+.btn, .btn-pill, .btn-full, .btn-ghost, .btn-sm,
+button:not(.api-tab):not(.floating-ball-preset-item):not(.floating-ball-config-link):not(.font-del-btn) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 8px !important; /* 方圆角 */
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #000000 !important;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.btn:active, .btn-pill:active, .btn-full:active, .btn-ghost:active, .btn-sm:active,
+button:not(.api-tab):not(.floating-ball-preset-item):not(.floating-ball-config-link):not(.font-del-btn):active {
+  background-color: #333333 !important;
+  border-color: #333333 !important;
+  opacity: 0.9;
+}
+
+/* 按钮里的图标强制白色 */
+.btn i, .btn-pill i, .btn-full i, .btn-ghost i, .btn-sm i,
+button:not(.api-tab):not(.floating-ball-preset-item):not(.floating-ball-config-link):not(.font-del-btn) i {
+  color: #FFFFFF !important;
+}
+
+/* 例外：危险按钮（红色边框或红底） */
+.btn-text-danger {
+  background: transparent !important;
+  color: var(--c-red) !important;
+  border-color: transparent !important;
+}
+.btn-text-danger i { color: var(--c-red) !important; }
+
+/* ============================================================
+   悬浮球 & 弹窗样式（保留原有逻辑）
+   ============================================================ */
+.global-floating-ball {
+  position: absolute;
+  z-index: 9500;
+  width: var(--floating-ball-size, 56px);
+  height: var(--floating-ball-size, 56px);
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  opacity: var(--floating-ball-idle-opacity, 0.65);
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: opacity 0.16s var(--ease), transform 0.16s var(--ease);
+  will-change: left, top, transform;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.18));
+}
+.global-floating-ball:hover,
+.global-floating-ball:focus-visible,
+.global-floating-ball.is-active { opacity: 1; }
+.global-floating-ball.is-active { transform: scale(1.04); }
+.global-floating-ball.is-dragging {
+  cursor: grabbing;
+  transition: opacity 0.16s var(--ease), transform 0.16s var(--ease);
+}
+.global-floating-ball img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: inherit;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* 弹窗覆盖层 */
+.floating-ball-popup-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 9505;
+  background: transparent;
+}
+.floating-ball-preset-popup {
+  position: absolute;
+  z-index: 9510;
+  width: min(264px, calc(100% - 20px));
+  max-height: min(360px, calc(100% - 20px));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid var(--c-border-m);
+  border-radius: 16px;
+  background: var(--c-bg);
+  background: color-mix(in srgb, var(--c-bg) 94%, transparent);
+  color: var(--c-text);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.floating-ball-popup-title {
+  padding: 3px 6px 9px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-sub);
+}
+.floating-ball-api-status {
+  margin-bottom: 8px;
+  padding: 11px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--c-accent-light) 72%, var(--c-bg));
+}
+.floating-ball-api-status > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.floating-ball-api-status strong { flex: 0 0 auto; font-size: 14px; }
+.floating-ball-api-status span {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--c-sub);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.floating-ball-api-status small {
+  display: block;
+  margin-top: 6px;
+  color: var(--c-accent-dark);
+  font-size: 12px;
+}
+.floating-ball-context-link {
+  width: 100%;
+  min-height: 42px;
+  border-radius: 11px;
+  padding: 9px 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--c-text);
+  background: color-mix(in srgb, var(--c-accent-light) 72%, var(--c-bg));
+  font-size: 14px;
+  font-weight: 600;
+}
+.floating-ball-context-link:active { opacity: 0.65; }
+.floating-ball-context-divider {
+  height: 1px;
+  margin: 10px 0;
+  background: var(--c-border-m);
+}
+.floating-ball-preset-list {
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.floating-ball-preset-item,
+.floating-ball-config-link {
+  width: 100%;
+  min-height: 42px;
+  border-radius: 11px;
+  padding: 9px 11px;
+  color: var(--c-text);
+  background: var(--c-surface);
+  text-align: left;
+  font-size: 14px;
+}
+.floating-ball-preset-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.floating-ball-preset-item span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.floating-ball-preset-item i { color: var(--c-accent-dark); }
+.floating-ball-preset-item.is-current {
+  background: var(--c-accent-light);
+  font-weight: 600;
+}
+.floating-ball-preset-item:active,
+.floating-ball-config-link:active { opacity: 0.65; }
+.floating-ball-preset-empty {
+  padding: 20px 8px 14px;
+  text-align: center;
+  color: var(--c-sub);
+  font-size: 13px;
+}
+.floating-ball-popup-actions {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--c-border-m);
+}
+.floating-ball-config-link {
+  text-align: center;
+  color: var(--c-accent-dark);
+  font-weight: 600;
+}
+.floating-ball-home-link {
+  width: 100%;
+  min-height: 42px;
+  border-radius: 11px;
+  padding: 9px 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--c-text);
+  background: color-mix(in srgb, var(--c-accent-light) 72%, var(--c-bg));
+  font-size: 14px;
+  font-weight: 600;
+}
+.floating-ball-home-link i { color: var(--c-accent-dark); }
+.floating-ball-home-link:active { opacity: 0.65; }
+
+/* ============================================================
+   其他通用组件（Tab切换、表单、卡片、预览等）
+   ============================================================ */
+.api-tab-bar {
+  display: flex;
+  margin: 0 0 8px;
+  background: var(--c-surface-2);
+  border-radius: var(--r-sm);
+  padding: 3px;
+  gap: 3px;
+}
+.api-tab {
+  flex: 1;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--c-sub);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  font-family: var(--font);
+}
+.api-tab.active {
+  background: var(--c-bg);
+  color: var(--c-text);
+  box-shadow: 0 3px 12px rgba(0,0,0,.08);
+}
+
+.input-field {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--c-border-m);
+  border-radius: var(--r-sm);
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-size: 15px;
+  outline: none;
+  transition: border-color var(--dur);
+}
+.input-field:focus { border-color: var(--c-accent); }
+textarea.input-field { resize: vertical; }
+
+.preview-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--c-border);
+  font-size: 13px;
+}
+.preview-row:last-child { border-bottom: none; }
+.preview-row span:last-child { color: var(--c-sub); }
+
+.export-progress-bar {
+  height: 3px;
+  background: var(--c-surface-2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.export-progress-fill {
+  height: 100%;
+  background: var(--c-accent);
+  border-radius: 2px;
+  transition: width 0.3s var(--ease);
+  width: 0%;
+}
+.export-progress-text {
+  font-size: 12px;
+  color: var(--c-sub);
+  text-align: center;
+}
